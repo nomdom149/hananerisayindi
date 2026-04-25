@@ -4,7 +4,41 @@
    Sections sombres : dark-vine / dark-vine-2
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Raleway:wght@300;700;900&display=swap');
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('/fonts/CormorantGaramond-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('/fonts/CormorantGaramond-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('/fonts/CormorantGaramond-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('/fonts/CormorantGaramond-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/DMSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --cream:         #F5F0E8;
@@ -24,7 +58,8 @@
   --border-dark:   rgba(255,255,255,0.10);
   --font-display:  'Cormorant Garamond', Georgia, serif;
   --font-body:     'DM Sans', system-ui, sans-serif;
-  --font-brand:    'Raleway', sans-serif;
+  --font-brand: 'DM Sans', system-ui, sans-serif;
+
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
