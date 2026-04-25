@@ -1,60 +1,54 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getRecentPosts, getPostsByCategory } from "@/lib/mdx";
 import "./home.css";
 
 export const metadata: Metadata = {
   title: "Hanane Risayindi — Pensée · Identité · Visibilité",
-  description: "Hub éditorial de Hanane Risayindi. Multipotentialité, identité, stratégie de visibilité. Belgique.",
+  description:
+    "Hub éditorial de Hanane Risayindi. Multipotentialité, identité, stratégie de visibilité. Belgique.",
 };
 
-const dernierContenu = [
+const THEMES = [
   {
-    slug: "multipotentiel-positionnement-flou",
-    type: "article",
-    category: "Positionnement",
-    title: "Pourquoi les multipotentiels restent flous malgré leur richesse",
-    excerpt: "Ton expertise est réelle. Ton parcours est solide. Et pourtant, expliquer ce que tu fais reste un exercice douloureux. Ce n'est pas un manque de compétences — c'est un manque de structure identitaire.",
-    date: "22 avril 2026",
-    readTime: "6 min",
+    slug: "multipotentialite",
+    label: "Multipotentialité",
+    description: "Les mécanismes, les contradictions, la richesse cachée des profils qui ne rentrent pas dans une case.",
   },
   {
-    slug: "linkedin-sans-strategie",
-    type: "article",
-    category: "LinkedIn",
-    title: "LinkedIn sans stratégie : beaucoup de bruit, peu de clients",
-    excerpt: "Des likes, des vues, des abonnés. Et zéro vente. Ce paradoxe, des centaines d'entrepreneurs l'ont vécu avant de comprendre que la visibilité sans positionnement est une énergie qui s'évapore.",
-    date: "14 avril 2026",
-    readTime: "5 min",
+    slug: "identite",
+    label: "Identité",
+    description: "Construire qui tu es avant de construire comment tu communiques. Le fond avant la forme.",
   },
   {
-    slug: "multipotentiel-incompris",
-    type: "video",
-    category: "Multipotentialité",
-    title: "Pourquoi tu te sens incompris — même par toi-même",
-    excerpt: "Le mécanisme le plus sous-estimé chez les profils multipotentiels : l'incapacité à se voir tel qu'on est vraiment, parce que le regard des autres a pris trop de place.",
-    date: "8 avril 2026",
-    readTime: "4 min",
+    slug: "rapport-au-travail",
+    label: "Rapport au travail",
+    description: "Surcharge mentale, dispersion, attachement à tout faire soi-même. Les patterns qui freinent.",
   },
-];
-
-const themes = [
-  { slug: "multipotentialite", label: "Multipotentialité", count: 8 },
-  { slug: "identite", label: "Identité", count: 6 },
-  { slug: "visibilite", label: "Visibilité", count: 5 },
-  { slug: "rapport-au-travail", label: "Rapport au travail", count: 4 },
-  { slug: "declics", label: "Déclics", count: 3 },
+  {
+    slug: "vulnerabilite",
+    label: "Vulnérabilité",
+    description: "L'expérimentation comme force — et comme risque. Ce qu'on apprend en allant trop loin.",
+  },
+  {
+    slug: "declics",
+    label: "Déclics",
+    description: "Les prises de conscience qui changent tout. Des récits personnels, sans filtre.",
+  },
 ];
 
 export default function HomePage() {
+  const recentPosts = getRecentPosts(3);
+
+  const themesWithCount = THEMES.map((t) => ({
+    ...t,
+    count: getPostsByCategory(t.slug as any).length,
+  }));
+
   return (
     <>
-
-      {/* ══════════════════════════════════════
-          HERO — fond crème, animation géométrie
-      ══════════════════════════════════════ */}
+      {/* ══════════ HERO ══════════ */}
       <section className="home-hero" aria-label="Hanane Risayindi — Pensée, Identité, Visibilité">
-
-        {/* Animation géométries sacrées */}
         <div className="hero-geometry" aria-hidden="true">
           <svg viewBox="0 0 700 600" xmlns="http://www.w3.org/2000/svg" className="hero-geometry__svg">
             <defs>
@@ -67,10 +61,28 @@ export default function HomePage() {
                 <stop offset="0%" stopColor="#C8581A" stopOpacity="0.1"/>
                 <stop offset="100%" stopColor="#FAF8F3" stopOpacity="0"/>
               </radialGradient>
+              <style>{`
+                @keyframes hCW  {from{transform-origin:350px 300px;transform:rotate(0deg)}to{transform-origin:350px 300px;transform:rotate(360deg)}}
+                @keyframes hCCW {from{transform-origin:350px 300px;transform:rotate(0deg)}to{transform-origin:350px 300px;transform:rotate(-360deg)}}
+                @keyframes hSlow{from{transform-origin:350px 300px;transform:rotate(0deg)}to{transform-origin:350px 300px;transform:rotate(360deg)}}
+                @keyframes hPu  {0%,100%{opacity:.65;r:5.5}50%{opacity:.9;r:7.5}}
+                @keyframes hPu2 {0%,100%{opacity:.55;r:4.5}50%{opacity:.8;r:6}}
+                @keyframes hCo  {0%,100%{opacity:.45;rx:28;ry:28}50%{opacity:.65;rx:36;ry:36}}
+                @keyframes hDo  {0%,100%{opacity:.75;r:8}50%{opacity:1;r:10}}
+                @keyframes hRi  {0%,100%{opacity:.16}50%{opacity:.28}}
+                @keyframes hRi2 {0%,100%{opacity:.10}50%{opacity:.20}}
+                .ho1{animation:hCW   26s linear infinite}
+                .ho2{animation:hCCW  38s linear infinite}
+                .ho3{animation:hSlow 55s linear infinite}
+                .hri{animation:hRi   5s ease-in-out infinite}
+                .hr2{animation:hRi2  7s ease-in-out infinite}
+                .hpu{animation:hPu   3.5s ease-in-out infinite}
+                .hp2{animation:hPu2  4.5s ease-in-out infinite}
+                .hco{animation:hCo   4s ease-in-out infinite}
+                .hdo{animation:hDo   3.5s ease-in-out infinite}
+              `}</style>
             </defs>
-            {/* Glow ambiant */}
             <ellipse cx="350" cy="300" rx="240" ry="200" fill="url(#glowMid)"/>
-            {/* Fleur de Vie */}
             <g opacity="0.12" stroke="#C8581A" strokeWidth="0.8" fill="none">
               <circle cx="350" cy="300" r="58"/>
               <circle cx="408" cy="300" r="58"/>
@@ -81,7 +93,6 @@ export default function HomePage() {
               <circle cx="379" cy="350" r="58"/>
               <circle cx="350" cy="300" r="116"/>
             </g>
-            {/* Métatron lignes */}
             <g opacity="0.07" stroke="#B56A3A" strokeWidth="0.6" fill="none">
               <line x1="350" y1="184" x2="350" y2="416"/>
               <line x1="249" y1="242" x2="451" y2="358"/>
@@ -92,43 +103,32 @@ export default function HomePage() {
               <line x1="350" y1="416" x2="451" y2="242"/>
               <line x1="350" y1="416" x2="249" y2="242"/>
             </g>
-            {/* Orbites */}
-            <circle cx="350" cy="300" r="90"  fill="none" stroke="#C8581A" strokeWidth="0.6" opacity="0.18" className="ring-pulse"/>
+            <circle cx="350" cy="300" r="90"  fill="none" stroke="#C8581A" strokeWidth="0.6" opacity="0.18" className="hri"/>
             <circle cx="350" cy="300" r="135" fill="none" stroke="#B56A3A" strokeWidth="0.4" opacity="0.13" strokeDasharray="4 7"/>
-            <circle cx="350" cy="300" r="178" fill="none" stroke="#C8581A" strokeWidth="0.35" opacity="0.11" className="ring-pulse-2"/>
+            <circle cx="350" cy="300" r="178" fill="none" stroke="#C8581A" strokeWidth="0.35" opacity="0.11" className="hr2"/>
             <circle cx="350" cy="300" r="220" fill="none" stroke="#8B7D74" strokeWidth="0.3" opacity="0.09" strokeDasharray="2 9"/>
-            {/* Satellites orbite 1 */}
-            <g className="orb-1">
-              <circle cx="440" cy="300" r="5.5" fill="#C8581A" opacity="0.7" className="sat-pulse"/>
+            <g className="ho1">
+              <circle cx="440" cy="300" r="5.5" fill="#C8581A" opacity="0.7" className="hpu"/>
               <circle cx="440" cy="300" r="11" fill="#C8581A" opacity="0.08"/>
             </g>
-            {/* Satellites orbite 2 */}
-            <g className="orb-2">
-              <circle cx="485" cy="300" r="4.5" fill="#B56A3A" opacity="0.6" className="sat-pulse-2"/>
+            <g className="ho2">
+              <circle cx="485" cy="300" r="4.5" fill="#B56A3A" opacity="0.6" className="hp2"/>
               <circle cx="215" cy="300" r="3"   fill="#E8A070" opacity="0.45"/>
             </g>
-            {/* Satellites orbite 3 */}
-            <g className="orb-3">
-              <circle cx="528" cy="300" r="4"   fill="#E8A070" opacity="0.5" className="sat-pulse"/>
+            <g className="ho3">
+              <circle cx="528" cy="300" r="4"   fill="#E8A070" opacity="0.5" className="hpu"/>
               <circle cx="172" cy="300" r="3"   fill="#C8581A" opacity="0.35"/>
               <circle cx="465" cy="455" r="3.5" fill="#B56A3A" opacity="0.4"/>
             </g>
-            {/* Point focal central */}
-            <ellipse cx="350" cy="300" rx="32" ry="32" fill="url(#coreDot)" opacity="0.5" className="core-pulse"/>
-            <circle cx="350" cy="300" r="8" fill="#C8581A" opacity="0.8" className="core-dot"/>
+            <ellipse cx="350" cy="300" rx="32" ry="32" fill="url(#coreDot)" opacity="0.5" className="hco"/>
+            <circle cx="350" cy="300" r="8" fill="#C8581A" opacity="0.8" className="hdo"/>
             <circle cx="350" cy="300" r="3" fill="#211214" opacity="0.9"/>
-            {/* Croix lumineuse */}
             <g opacity="0.25" stroke="#C8581A" strokeWidth="0.8">
               <line x1="350" y1="274" x2="350" y2="291"/>
               <line x1="350" y1="309" x2="350" y2="326"/>
               <line x1="324" y1="300" x2="341" y2="300"/>
               <line x1="359" y1="300" x2="376" y2="300"/>
             </g>
-            {/* Points décoratifs fixes */}
-            <circle cx="120" cy="100" r="2"   fill="#C8581A" opacity="0.2"/>
-            <circle cx="580" cy="80"  r="1.5" fill="#B56A3A" opacity="0.18"/>
-            <circle cx="620" cy="450" r="2"   fill="#E8A070" opacity="0.15"/>
-            <circle cx="80"  cy="480" r="1.5" fill="#8B7D74" opacity="0.15"/>
           </svg>
         </div>
 
@@ -148,32 +148,25 @@ export default function HomePage() {
               <Link href="/a-propos" className="btn-ghost">Qui est Hanane ?</Link>
             </div>
           </div>
-          <div className="hero-right">
-            {/* Photo à venir — l'animation SVG occupe cet espace */}
-          </div>
+          <div className="hero-right"/>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          SECTION SOMBRE (dark-vine-2) — manifeste
-          1 seule section sombre par page
-      ══════════════════════════════════════ */}
+      {/* ══════════ MANIFESTE — dark-vine-2 ══════════ */}
       <section className="home-manifeste" aria-label="Manifeste">
         <div className="container">
           <div className="home-manifeste__inner">
-            <p className="section-eyebrow section-eyebrow--light section-eyebrow--center">
-              Le terrain
-            </p>
+            <p className="section-eyebrow section-eyebrow--light section-eyebrow--center">Le terrain</p>
             <h2 className="section-h2 section-h2--light" style={{textAlign:"center", marginBottom:"2.5rem"}}>
               Tu as tout pour être visible.<br/>
               <em>Et pourtant.</em>
             </h2>
             <div className="home-manifeste__body">
               <p>
-                Les profils multipotentiels accumulent les compétences, les expériences, les angles d'attaque. Ils ont souvent plus de profondeur que la moyenne. Et ils restent flous aux yeux des autres — parfois même aux leurs.
+                Les profils multipotentiels accumulent les compétences, les expériences, les angles d&apos;attaque. Ils ont souvent plus de profondeur que la moyenne. Et ils restent flous aux yeux des autres — parfois même aux leurs.
               </p>
               <p>
-                Un message diffus. Une posture qui ne s'est jamais vraiment solidifiée, parce que choisir une case semblait trahir tout le reste. Ce site explore ces mécanismes — sans conseils génériques, avec de la profondeur et du recul.
+                Un message diffus. Une posture qui ne s&apos;est jamais vraiment solidifiée, parce que choisir une case semblait trahir tout le reste. Ce site explore ces mécanismes — sans conseils génériques, avec de la profondeur et du recul.
               </p>
             </div>
             <p className="home-manifeste__signature">— Hanane Risayindi</p>
@@ -181,9 +174,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          DERNIERS CONTENUS — fond crème
-      ══════════════════════════════════════ */}
+      {/* ══════════ DERNIERS CONTENUS — vrais articles MDX ══════════ */}
       <section className="home-contenus" aria-label="Derniers contenus">
         <div className="container">
           <div className="home-section-header">
@@ -193,30 +184,35 @@ export default function HomePage() {
             </div>
             <Link href="/blog" className="btn-ghost">Tout voir →</Link>
           </div>
-          <div className="home-contenus__grid">
-            {dernierContenu.map((item) => (
-              <Link key={item.slug} href={`/blog/${item.slug}`} className="home-card">
-                <div className="home-card__body">
-                  <div className="home-card__meta">
-                    <span className={`home-card__type home-card__type--${item.type}`}>
-                      {item.type === "video" ? "▶ Vidéo" : "✦ Article"}
-                    </span>
-                    <span>{item.category}</span>
-                    <span>{item.readTime}</span>
+
+          {recentPosts.length === 0 ? (
+            <p style={{color:"var(--muted)", fontStyle:"italic"}}>
+              Les premiers articles arrivent bientôt.
+            </p>
+          ) : (
+            <div className="home-contenus__grid">
+              {recentPosts.map((post) => (
+                <Link key={post.slug} href={`/blog/${post.slug}`} className="home-card">
+                  <div className="home-card__body">
+                    <div className="home-card__meta">
+                      <span className={`home-card__type home-card__type--${post.type}`}>
+                        {post.type === "video" ? "▶ Vidéo" : "✦ Article"}
+                      </span>
+                      <span>{post.category.replace(/-/g, " ")}</span>
+                      <span>{post.readTime}</span>
+                    </div>
+                    <h3 className="home-card__title">{post.title}</h3>
+                    <p className="home-card__excerpt">{post.excerpt}</p>
+                    <span className="home-card__link">Lire →</span>
                   </div>
-                  <h3 className="home-card__title">{item.title}</h3>
-                  <p className="home-card__excerpt">{item.excerpt}</p>
-                  <span className="home-card__link">Lire →</span>
-                </div>
-              </Link>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          THÈMES — fond cream (légèrement différent)
-      ══════════════════════════════════════ */}
+      {/* ══════════ THÈMES — comptes réels ══════════ */}
       <section className="home-themes" aria-label="Thèmes éditoriaux">
         <div className="container">
           <div style={{textAlign:"center", marginBottom:"3rem"}}>
@@ -224,12 +220,13 @@ export default function HomePage() {
             <h2 className="section-h2">Explorer par thème</h2>
           </div>
           <div className="home-themes__grid">
-            {themes.map((theme) => (
+            {themesWithCount.map((theme, i) => (
               <Link key={theme.slug} href={`/themes/${theme.slug}`} className="home-theme-card">
                 <span className="home-theme-card__count">
-                  {String(theme.count).padStart(2,"0")}
+                  {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="home-theme-card__label">{theme.label}</span>
+                <p className="home-theme-card__desc">{theme.description}</p>
                 <span className="home-theme-card__arrow">→</span>
               </Link>
             ))}
@@ -237,9 +234,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          CTA WEBSAIT — fond crème
-      ══════════════════════════════════════ */}
+      {/* ══════════ CTA WEBSAIT ══════════ */}
       <section className="home-cta-websait" aria-label="Lien vers Websait">
         <div className="container">
           <div className="home-cta-websait__inner">
@@ -258,7 +253,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
     </>
   );
 }
