@@ -1,0 +1,182 @@
+/* ============================================
+   HANANE RISAYINDI — footer.css
+   Calqué sur Websait — dark-vine pour les 3 footers
+   ============================================ */
+
+/* ── FOOTER 1 — Navigation ── */
+.footer-1 {
+  background: var(--dark-vine-2);
+  padding: 3rem 0 2.5rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-1__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+.footer-1__link {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.25s;
+}
+.footer-1__link:hover { color: var(--orange-bg); }
+
+/* ── FOOTER 2 — Logo + coordonnées + légaux ── */
+.footer-2 {
+  background: var(--dark-vine-3);
+  padding: 3.5rem 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-2__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 18rem;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Colonne gauche — brand + coordonnées */
+.footer-2__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.footer-2__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-2__logo-circle {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-body);
+  font-weight: 500; font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.footer-2__logo-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+
+.footer-2__coords {
+  font-style: normal;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 2;
+}
+
+.footer-2__coords a {
+  color: var(--orange-bg);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.footer-2__coords a:hover { opacity: 0.8; }
+
+.footer-2__coords-label {
+  color: rgba(255,255,255,0.55);
+}
+
+/* Colonne droite — légaux */
+.footer-2__legal {}
+
+.footer-2__legal-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--orange-bg);
+  margin-bottom: 1.2rem;
+}
+
+.footer-2__legal-list {
+  list-style: disc;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-2__legal-list li { color: rgba(255,255,255,0.45); }
+
+.footer-2__legal-link {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.footer-2__legal-link:hover { color: var(--orange-bg); }
+
+/* ── FOOTER 3 — Copyright centré ── */
+.footer-3 {
+  background: var(--dark-vine);
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-3__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.footer-3__copy {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.04em;
+}
+
+.footer-3__dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  flex-shrink: 0;
+}
+
+.footer-3__link {
+  font-size: 0.78rem;
+  color: var(--orange-bg);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.footer-3__link:hover { opacity: 0.75; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .footer-2__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .footer-1__inner,
+  .footer-2__inner,
+  .footer-3__inner {
+    padding: 0 1.5rem;
+  }
+}

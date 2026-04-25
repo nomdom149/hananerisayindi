@@ -1,0 +1,136 @@
+/* ============================================
+   HANANE RISAYINDI — globals.css
+   Même logique que Websait — fond crème
+   Sections sombres : dark-vine / dark-vine-2
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Raleway:wght@300;700;900&display=swap');
+
+:root {
+  --cream:         #F5F0E8;
+  --cream-light:   #FAF8F3;
+  --dark-vine:     #211214;
+  --dark-vine-2:   #2B171A;
+  --dark-vine-3:   #3A2025;
+  --orange:        #C8581A;
+  --orange-light:  #D4692B;
+  --orange-pale:   #F0DDD0;
+  --orange-bg:     #E8A070;
+  --copper:        #B56A3A;
+  --gold:          #A8833A;
+  --muted:         #8B7D74;
+  --muted-light:   #A09890;
+  --border:        rgba(60,45,30,0.12);
+  --border-dark:   rgba(255,255,255,0.10);
+  --font-display:  'Cormorant Garamond', Georgia, serif;
+  --font-body:     'DM Sans', system-ui, sans-serif;
+  --font-brand:    'Raleway', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream-light);
+  color: var(--dark-vine);
+  font-size: 16px;
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--dark-vine);
+}
+h1 { font-size: clamp(3rem, 6vw, 5.5rem); }
+h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h4 { font-size: 1.4rem; font-weight: 400; }
+
+p { color: var(--dark-vine); line-height: 1.85; }
+a { color: inherit; text-decoration: none; }
+strong { font-weight: 500; }
+em { font-style: italic; }
+
+/* ── EYEBROW ── */
+.section-eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.section-eyebrow::before, .section-eyebrow::after {
+  content: ''; display: inline-block;
+  width: 24px; height: 1px; background: var(--orange);
+}
+.section-eyebrow--center { justify-content: center; }
+.section-eyebrow--light { color: var(--orange-bg); }
+.section-eyebrow--light::before,
+.section-eyebrow--light::after { background: var(--orange-bg); }
+
+/* ── H2 sections ── */
+.section-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 300; color: var(--dark-vine); line-height: 1.15;
+}
+.section-h2 em { font-style: italic; color: var(--orange); }
+.section-h2--light { color: #fff; }
+.section-h2--light em { color: var(--orange-bg); }
+
+/* ── LAYOUT ── */
+.container {
+  width: 100%; max-width: 1200px;
+  margin: 0 auto; padding: 0 3rem;
+}
+
+/* ── BOUTONS ── */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.9rem 2.2rem; background: var(--orange); color: #fff;
+  font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
+  text-decoration: none; border-radius: 4px;
+  transition: background 0.25s; border: none; cursor: pointer;
+}
+.btn-primary:hover { background: var(--orange-light); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.9rem 2.2rem; border: 1px solid var(--border);
+  color: var(--dark-vine); font-size: 0.85rem;
+  text-decoration: none; border-radius: 4px; transition: all 0.25s;
+}
+.btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+
+.btn-ghost-white {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.9rem 2.2rem; border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.75); font-size: 0.85rem;
+  text-decoration: none; border-radius: 4px; transition: all 0.25s;
+}
+.btn-ghost-white:hover { border-color: var(--orange-bg); color: var(--orange-bg); }
+
+/* ── DIVIDER ── */
+.hero-divider { width: 48px; height: 2px; background: var(--orange); margin: 1.8rem 0; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream-light); }
+::-webkit-scrollbar-thumb { background: var(--cream); }
+::-webkit-scrollbar-thumb:hover { background: var(--orange); }
+::selection { background: rgba(200,88,26,0.15); color: var(--dark-vine); }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .container { padding: 0 1.5rem; }
+}
