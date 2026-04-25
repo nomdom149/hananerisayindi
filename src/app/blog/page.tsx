@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getRecentPosts, getPostsByCategory } from "@/lib/mdx";
-import "./home.css";
+import "@/app/blog/blog.css";
 
 export const metadata: Metadata = {
   title: "Hanane Risayindi — Pensée · Identité · Visibilité",
