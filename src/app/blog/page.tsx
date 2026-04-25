@@ -48,7 +48,8 @@ export default function BlogPage({
           <p className="section-eyebrow">Contenus</p>
           <h1 className="blog-hero__title">
             Réflexions sur<br/>
-            <em>qui on est dans ce fonctionnement satellitaire.</em>
+            <em>qui on est dans ce </em><br>
+           <em>fonctionnement satellitaire.</em> </br>
           </h1>
           <p className="blog-hero__sub">
             Articles et vidéos sur la multipotentialité, l'identité professionnelle
