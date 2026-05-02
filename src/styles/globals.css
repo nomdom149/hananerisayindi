@@ -58,8 +58,7 @@
   --border-dark:   rgba(255,255,255,0.10);
   --font-display:  'Cormorant Garamond', Georgia, serif;
   --font-body:     'DM Sans', system-ui, sans-serif;
-  --font-brand: 'DM Sans', system-ui, sans-serif;
-
+  --font-brand:    'DM Sans', system-ui, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -169,3 +168,215 @@ em { font-style: italic; }
 @media (max-width: 768px) {
   .container { padding: 0 1.5rem; }
 }
+
+/* ============================================
+   COMPOSANTS BLOG — Articles MDX
+   ============================================ */
+
+/* ── HIGHLIGHT — fond dark-vine-2 (cadre brun foncé) ── */
+.highlight {
+  background: var(--dark-vine-2);
+  color: var(--cream);                  /* texte clair sur fond sombre */
+  padding: 1.5rem 1.75rem;
+  border-left: 3px solid var(--orange);
+  border-radius: 2px;
+  margin: 2rem 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.highlight strong {
+  color: var(--orange-light);           /* accent visible sur fond sombre */
+  font-weight: 500;
+}
+.highlight p {
+  color: var(--cream);                  /* écrase l'héritage global color: dark-vine */
+  margin: 0;
+}
+
+/* ── INSIGHT — fond orange-pale (cadre saumon clair) ── */
+.insight {
+  background: var(--orange-pale);
+  color: var(--dark-vine);              /* texte sombre sur fond clair */
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid var(--copper);
+  border-radius: 2px;
+  margin: 2rem 0;
+  font-family: var(--font-body);
+  font-size: 0.97rem;
+  line-height: 1.75;
+}
+.insight strong {
+  color: var(--dark-vine);
+  font-weight: 500;
+}
+.insight p {
+  color: var(--dark-vine);              /* sécurité : pas d'héritage parasite */
+  margin: 0;
+}
+
+/* ── STAT BANNER ── */
+.stat-banner {
+  background: var(--orange);
+  color: #fff;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 2rem 1.5rem;
+  border-radius: 4px;
+  margin: 2.5rem 0;
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1;
+  color: #fff;
+}
+.stat-label {
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  text-align: center;
+  max-width: 140px;
+}
+
+/* ── STAT GRID ── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.stat-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1.25rem 1rem;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  text-align: center;
+}
+.stat-cell .num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--orange);
+  line-height: 1;
+}
+.stat-cell .lbl {
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── IMAGE SEO ── */
+.img-seo {
+  margin: 2.5rem 0;
+}
+.img-seo figcaption {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+/* ── FAQ ── */
+.faq-wrap {
+  margin: 3rem 0;
+  border-top: 1px solid var(--border);
+}
+.faq-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 300;
+  color: var(--dark-vine);
+  padding: 2rem 0 1.5rem;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-btn {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 1.1rem 0;
+  font-family: var(--font-body);
+  font-size: 0.97rem;
+  font-weight: 500;
+  color: var(--dark-vine);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  transition: color 0.2s;
+}
+.faq-btn:hover { color: var(--orange); }
+.faq-btn::after {
+  content: '+';
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--orange);
+  flex-shrink: 0;
+  transition: transform 0.25s;
+}
+.faq-btn[aria-expanded="true"]::after {
+  transform: rotate(45deg);
+}
+.faq-ans {
+  display: none;
+  padding: 0 0 1.25rem;
+  font-size: 0.94rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.faq-btn[aria-expanded="true"] + .faq-ans {
+  display: block;
+}
+
+/* ── SOURCES ── */
+.sources-wrap {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem 1.75rem;
+  margin: 2.5rem 0;
+}
+.sources-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.sources-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.sources-list li {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.sources-list a {
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.sources-list a:hover { color: var(--orange-light); }
