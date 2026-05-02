@@ -35,6 +35,7 @@ export interface Post {
   readTime: string;
   videoUrl?: string;
   coverImage?: string;
+  imageCaption?: string;
   relatedServices?: RelatedService[];
   content: string;
 }
@@ -68,6 +69,7 @@ function getPostsFromDir(dir: string): Post[] {
       readTime: data.readTime || rt.text,
       videoUrl: data.videoUrl || undefined,
       coverImage: data.coverImage || undefined,
+      imageCaption: data.imageCaption || undefined,
       relatedServices: data.relatedServices || [
         {
           label: "Clarifier votre positionnement",

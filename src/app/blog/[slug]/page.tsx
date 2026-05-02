@@ -151,7 +151,7 @@ export default async function ArticlePage({
     <div className="img-seo-photo">
       <img
         src={post.coverImage}
-        alt={`${post.title} — Hanane Risayindi`}
+        alt={`${post.seoTitle} — Hanane Risayindi`}
         title={post.seoTitle}
         loading="lazy"
         width={338}
@@ -159,7 +159,8 @@ export default async function ArticlePage({
       />
     </div>
     <figcaption className="img-seo-caption">
-      {post.excerpt}<br />
+      {post.imageCaption ?? post.seoTitle}
+      <br />
       <span>© Hanane Risayindi</span>
     </figcaption>
   </div>
