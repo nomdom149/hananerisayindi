@@ -143,10 +143,30 @@ export default async function ArticlePage({
       <main className="article-body">
 
         {/* Intro encadrée */}
-        <p className="intro-seo">{post.excerpt}</p>
+<p className="intro-seo">{post.excerpt}</p>
 
-        {/* Lien vidéo si applicable */}
-        {post.type === "video" && post.videoUrl && (
+{/* Image article verticale — si coverImage définie */}
+{post.coverImage && (
+  <div className="img-seo-wrap">
+    <div className="img-seo-photo">
+      <img
+        src={post.coverImage}
+        alt={`${post.title} — Hanane Risayindi`}
+        title={post.seoTitle}
+        loading="lazy"
+        width={338}
+        height={600}
+      />
+    </div>
+    <figcaption className="img-seo-caption">
+      {post.excerpt}<br />
+      <span>© Hanane Risayindi</span>
+    </figcaption>
+  </div>
+)}
+
+{/* Lien vidéo si applicable */}
+{post.type === "video" && post.videoUrl && (
           <div className="insight">
             <a href={post.videoUrl} target="_blank" rel="noopener noreferrer">
               ▶ Voir la vidéo sur Instagram →
