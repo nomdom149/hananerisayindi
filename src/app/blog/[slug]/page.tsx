@@ -161,23 +161,7 @@ export default async function ArticlePage({
 
         <div className="art-divider" />
 
-        {/* ── FAQ ── */}
-        <section className="faq-wrap" aria-labelledby="faq-heading">
-          <h2 className="faq-h2" id="faq-heading">Questions fréquentes</h2>
-          <p style={{ color: "var(--muted)", fontSize: "0.88rem", marginBottom: "2rem" }}>
-            La FAQ sera ajoutée directement dans le fichier MDX de cet article.
-          </p>
-        </section>
-
-        {/* ── SOURCES ── */}
-        <aside className="sources-wrap" aria-labelledby="sources-heading">
-          <p className="sources-eyebrow" id="sources-heading">Sources &amp; références</p>
-          <ul className="sources-list">
-            <li>
-              Les sources seront ajoutées directement dans le fichier MDX de cet article.
-            </li>
-          </ul>
-        </aside>
+       
 
         {/* ── CTA dark-vine ── */}
         {post.relatedServices && post.relatedServices.length > 0 && (
