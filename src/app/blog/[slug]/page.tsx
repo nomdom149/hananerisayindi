@@ -77,7 +77,6 @@ function ArticleJsonLd({ post }: { post: NonNullable<ReturnType<typeof getPostBy
   );
 }
 
-// Composants MDX custom — mappent les classes Websait
 const mdxComponents = {
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2 className="article-h2" {...props} />
@@ -126,7 +125,20 @@ export default async function ArticlePage({
         <span className="article-pillar">
           {post.type === "video" ? "▶ Vidéo" : "✦ Article"} · {categoryLabel}
         </span>
-        <h1>{post.title}</h1>
+
+        {/* Titre : partie principale + accent orange si défini */}
+        <h1>
+          {post.titleAccent ? (
+            <>
+              {post.title}
+              {" : "}
+              <em>{post.titleAccent}</em>
+            </>
+          ) : (
+            post.title
+          )}
+        </h1>
+
         <div className="article-meta">
           <span>{post.date}</span>
           <span className="meta-dot" aria-hidden="true" />
@@ -143,31 +155,31 @@ export default async function ArticlePage({
       <main className="article-body">
 
         {/* Intro encadrée */}
-<p className="intro-seo">{post.excerpt}</p>
+        <p className="intro-seo">{post.excerpt}</p>
 
-{/* Image article verticale — si coverImage définie */}
-{post.coverImage && (
-  <div className="img-seo-wrap">
-    <div className="img-seo-photo">
-      <img
-        src={post.coverImage}
-        alt={`${post.seoTitle} — Hanane Risayindi`}
-        title={post.seoTitle}
-        loading="lazy"
-        width={338}
-        height={600}
-      />
-    </div>
-    <figcaption className="img-seo-caption">
-      {post.imageCaption ?? post.seoTitle}
-      <br />
-      <span>© Hanane Risayindi</span>
-    </figcaption>
-  </div>
-)}
+        {/* Image article verticale — si coverImage définie */}
+        {post.coverImage && (
+          <div className="img-seo-wrap">
+            <div className="img-seo-photo">
+              <img
+                src={post.coverImage}
+                alt={`${post.seoTitle} — Hanane Risayindi`}
+                title={post.seoTitle}
+                loading="lazy"
+                width={338}
+                height={600}
+              />
+            </div>
+            <figcaption className="img-seo-caption">
+              {post.imageCaption ?? post.seoTitle}
+              <br />
+              <span>© Hanane Risayindi</span>
+            </figcaption>
+          </div>
+        )}
 
-{/* Lien vidéo si applicable */}
-{post.type === "video" && post.videoUrl && (
+        {/* Lien vidéo si applicable */}
+        {post.type === "video" && post.videoUrl && (
           <div className="insight">
             <a href={post.videoUrl} target="_blank" rel="noopener noreferrer">
               ▶ Voir la vidéo sur Instagram →
@@ -181,8 +193,6 @@ export default async function ArticlePage({
         </div>
 
         <div className="art-divider" />
-
-       
 
         {/* ── CTA dark-vine ── */}
         {post.relatedServices && post.relatedServices.length > 0 && (
