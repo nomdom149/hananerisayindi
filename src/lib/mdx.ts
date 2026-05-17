@@ -14,6 +14,7 @@ export type Category =
   | "rapport-au-travail"
   | "declics"
   | "positionnement"
+  | "vulnerabilite"
   | "linkedin";
 
 export interface RelatedService {
@@ -24,6 +25,7 @@ export interface RelatedService {
 export interface Post {
   slug: string;
   title: string;
+  titleAccent?: string;
   date: string;
   updatedAt?: string;
   type: ContentType;
@@ -58,6 +60,7 @@ function getPostsFromDir(dir: string): Post[] {
     return {
       slug: data.slug || slug,
       title: data.title || "",
+      titleAccent: data.titleAccent || undefined,
       date: data.date || "",
       updatedAt: data.updatedAt || data.date || "",
       type: data.type || "article",
