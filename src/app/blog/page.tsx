@@ -18,12 +18,14 @@ const CATEGORIES = [
   { slug: "declics",           label: "Déclics" },
 ];
 
-export default function BlogPage({
+export default async function BlogPage({
   searchParams,
 }: {
-  searchParams?: { cat?: string };
+  searchParams?: Promise<{ cat?: string }>;
 }) {
-  const activecat = searchParams?.cat || "all";
+  const params = await searchParams;
+  const activecat = params?.cat || "all";
+  
   const allPosts  = getAllPosts();
   const posts     = activecat === "all"
     ? allPosts
