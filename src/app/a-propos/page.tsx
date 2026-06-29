@@ -103,7 +103,18 @@ export default function AProposPage() {
             </div>
           </div>
 
-          <div className="ap-section__aside" aria-hidden="true" />
+          <div className="ap-section__aside">
+            <div className="ap-carnet-wrap">
+              <Image
+                src="/images/heure-juste-carnet-portrait.jpeg"
+                alt="L'Heure Juste — carnet Still Room ouvert sur la première semaine"
+                width={600}
+                height={800}
+                className="ap-carnet-img"
+              />
+              <p className="ap-carnet-caption">L'Heure Juste · Still Room</p>
+            </div>
+          </div>
 
         </div>
       </section>
